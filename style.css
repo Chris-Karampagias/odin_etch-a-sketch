@@ -1,0 +1,37 @@
+body{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background-color: rgb(23 21 21 / 98%);
+    height:100vh;
+}
+
+.main-container{
+    display:flex;
+    justify-content: space-around;
+    padding:1rem; 
+    gap:12rem;
+    background-color: rgb(50 50 50 / 79%);
+    height:75vh;
+    width:75vw;
+}
+
+.left-container{
+    display:flex;
+    flex-direction:column;
+    justify-content: space-evenly;
+    gap:1rem;
+}
+
+.right-container{
+    display:flex;
+    flex-direction:column;
+    align-items: center;
+    gap:2rem;
+}
+
+.grid{
+    height: 700px;
+    width: 700px;
+    background-color: white;
+}
