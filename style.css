@@ -2,7 +2,7 @@ body{
     display:flex;
     justify-content:center;
     align-items:center;
-    background-color: rgb(23 21 21 / 98%);
+    background-color: rgb(13 11 18 / 94%);
     height:100vh;
 }
 
@@ -14,6 +14,8 @@ body{
     background-color: rgb(50 50 50 / 79%);
     height:75vh;
     width:75vw;
+    border-radius:7px;
+    box-shadow: 19px 5px 11px 14px #1f1f20;
 }
 
 .left-container{
@@ -30,8 +32,35 @@ body{
     gap:2rem;
 }
 
+.grid-size{
+    font-size:2rem;
+}
+
 .grid{
     height: 700px;
     width: 700px;
-    background-color: white;
+    background-color: rgba(255, 255, 255, 0.577);
+    border-radius:3px;
+}
+
+.btn{
+    font-size:1.2rem;
+    padding:0.5rem;
+    border-radius:7px;
+    border-style: none;
+    background-color: rgb(202 206 182 / 82%);
+    transition: all .2s ease-in-out;
+}
+
+.btn:hover{
+    transform: scale(1.15); 
+    cursor: pointer;
+}
+
+.rainbow{
+    background-image:linear-gradient(to left, violet, indigo, blue, green, yellow, orange, red); 
+}
+
+.enabled{
+    box-shadow: 5px 0px 14px 2px #f9f982;
 }
