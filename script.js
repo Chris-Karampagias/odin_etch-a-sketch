@@ -8,35 +8,28 @@ const grid = document.querySelector(".grid");
 
 
 window.addEventListener("load", setDefaultGridSize);
-window.addEventListener("load", () =>{
-    const boxes = document.querySelectorAll(".box");
-    boxes.forEach(box => {
-    box.addEventListener("click",(e) => {
-        e.target.style.backgroundColor = "black";
-                
-        })
-    ;});
-});
 
 
 function setDefaultGridSize() {
     const box = document.createElement("div");
-    box.classList.add("box");
+    box.setAttribute("id","gridBox")
     gridSize.textContent = "16x16";
     grid.setAttribute("style","grid-template-columns: repeat(16,1fr); grid-template-rows: repeat(16,1fr);");
     for (let i = 1; i<16**2 + 1; i++){
-        /* console.log(box); */
         grid.appendChild(box.cloneNode(true));
     }
+    const boxes = document.querySelectorAll("#gridBox");
+    boxes.forEach(box => {
+            ["mousedown","mouseover"].forEach(event => box.addEventListener(event,changeBackgroundColor));
+    })
 }
-
 changeSize.addEventListener("click" , changeGridSize);
 
 function changeGridSize() {
     const box = document.createElement("div");
     let n = parseInt(prompt('Enter your desired number of squares per side (max 100).'));
     gridSize.textContent = `${n}x${n}`;
-    box.classList.add("box");
+    box.setAttribute("id","gridBox");
     grid.setAttribute("style",`grid-template-columns: repeat(${n},1fr); grid-template-rows: repeat(${n},1fr);`);
     while (grid.firstChild){
         grid.removeChild(grid.firstChild);
@@ -45,8 +38,18 @@ function changeGridSize() {
     for (let i = 1 ; i < n**2 + 1; i++){
         grid.appendChild(box.cloneNode(true));
     }
+    const boxes = document.querySelectorAll("#gridBox");
+    boxes.forEach(box => {
+            ["mousedown","mouseover"].forEach(event => box.addEventListener(event,changeBackgroundColor));
+    });
 }
 
+function changeBackgroundColor(e) {
+    console.log(e);
+    if (e.buttons == 1){
+        e.target.style.backgroundColor = "black";
+    }
+}
 
 
 

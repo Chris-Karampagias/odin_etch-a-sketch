@@ -4,6 +4,7 @@ body{
     align-items:center;
     background-color: rgb(13 11 18 / 94%);
     height:100vh;
+    user-select: none;
 }
 
 .main-container{
@@ -71,8 +72,4 @@ body{
 
 .enabled{
     box-shadow: 5px 0px 14px 2px #f9f982;
-}
-
-.box {
-    border: 2px solid black;
 }
