@@ -10,7 +10,7 @@ body{
     display:flex;
     justify-content: space-around;
     padding:1rem; 
-    gap:12rem;
+    gap:8rem;
     background-color: rgb(50 50 50 / 79%);
     height:75vh;
     width:75vw;
@@ -29,14 +29,19 @@ body{
     display:flex;
     flex-direction:column;
     align-items: center;
-    gap:2rem;
+    gap:1rem;
 }
 
 .grid-size{
-    font-size:2rem;
+    font-size:3rem;
+    background-image:linear-gradient(to left,red,orange,yellow);
+    background-clip:text;
+    -webkit-background-clip:text;
+    -webkit-text-fill-color: transparent; 
 }
 
 .grid{
+    display:grid;
     height: 700px;
     width: 700px;
     background-color: rgba(255, 255, 255, 0.577);
@@ -58,9 +63,16 @@ body{
 }
 
 .rainbow{
-    background-image:linear-gradient(to left, violet, indigo, blue, green, yellow, orange, red); 
+    background-image:linear-gradient(to left, violet, indigo, blue, green, yellow, orange, red);
+    background-clip:text;
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;  
 }
 
 .enabled{
     box-shadow: 5px 0px 14px 2px #f9f982;
+}
+
+.box {
+    border: 2px solid black;
 }
