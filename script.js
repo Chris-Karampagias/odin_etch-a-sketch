@@ -45,14 +45,22 @@ function changeGridSize() {
 }
 
 function changeBackgroundColor(e) {
-    console.log(e);
-    if (e.buttons == 1){
+    if (e.buttons == 1 && toggleRainbow.classList.contains("enabled")){
         e.target.style.backgroundColor = "black";
     }
 }
 
+toggleRainbow.addEventListener("click", toggleRainbowModeAndErase);
+erase.addEventListener("click",toggleRainbowModeAndErase);
 
 
 
 
+function toggleRainbowModeAndErase(e){
+    if (e.target.classList.contains("erase")){
+    erase.classList.toggle("enabled");
+    }else{
+        toggleRainbow.classList.toggle("enabled");
+    }
+}
 
