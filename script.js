@@ -47,10 +47,12 @@ function changeGridSize() {
 }
 
 function changeBackgroundColor(e) {
-    if (e.buttons == 1 && toggleRainbow.classList.contains("enabled")){
+    if (e.buttons == 1 && toggleRainbow.classList.contains("enabled") && !erase.classList.contains("enabled")){
         rainbowMode(e);
-    }else if(e.buttons == 1 && !toggleRainbow.classList.contains("enabled")){
-        e.target.style.backgroundColor = "black";
+    }else if(e.buttons == 1 && !toggleRainbow.classList.contains("enabled") && !erase.classList.contains("enabled")){
+        standardMode(e);
+    }else if (e.buttons == 1 && erase.classList.contains("enabled")){
+        eraseMode(e);
     }
 }
 
@@ -100,3 +102,13 @@ function toggleRainbowModeAndErase(e){
     }
 }
 
+erase.addEventListener("click",eraseMode);
+
+function eraseMode(e){
+    toggleRainbow.classList.remove("enabled");
+    e.target.style.backgroundColor = '';
+}
+
+function standardMode(e){
+    e.target.style.backgroundColor = "black";
+}
