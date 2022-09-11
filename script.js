@@ -1,7 +1,7 @@
 const changeSize = document.querySelector(".changeSize");
 const erase = document.querySelector(".erase");
 const toggleRainbow = document.querySelector(".toggleRainbow");
-const reset = document.querySelector(".reset");
+const clear = document.querySelector(".clear");
 const gridSize = document.querySelector(".grid-size");
 const grid = document.querySelector(".grid");
 
@@ -11,12 +11,13 @@ window.addEventListener("load", setDefaultGridSize);
 changeSize.addEventListener("click" , changeGridSize);
 toggleRainbow.addEventListener("click", toggleRainbowModeAndErase);
 erase.addEventListener("click",toggleRainbowModeAndErase);
+clear.addEventListener("click",clearMode);
 
 
 function setDefaultGridSize() {
     const box = document.createElement("div");
     box.setAttribute("id","gridBox")
-    gridSize.textContent = "16x16";
+    gridSize.textContent = "16 x 16";
     grid.setAttribute("style","grid-template-columns: repeat(16,1fr); grid-template-rows: repeat(16,1fr);");
     for (let i = 1; i<16**2 + 1; i++){
         grid.appendChild(box.cloneNode(true));
@@ -30,7 +31,7 @@ function setDefaultGridSize() {
 function changeGridSize() {
     const box = document.createElement("div");
     let n = parseInt(prompt('Enter your desired number of squares per side (max 100).'));
-    gridSize.textContent = `${n}x${n}`;
+    gridSize.textContent = `${n} x ${n}`;
     box.setAttribute("id","gridBox");
     grid.setAttribute("style",`grid-template-columns: repeat(${n},1fr); grid-template-rows: repeat(${n},1fr);`);
     while (grid.firstChild){
@@ -56,7 +57,13 @@ function changeBackgroundColor(e) {
     }
 }
 
+
+function eraseMode(e){
+    e.target.style.backgroundColor = '';
+}
+    
 function rainbowMode(e) {
+    erase.classList.remove("enabled");
     if (!e.target.style.backgroundColor || e.target.style.backgroundColor == "black"){
     let r = Math.floor(Math.random() * 256);
     let g = Math.floor(Math.random() * 256);
@@ -97,18 +104,22 @@ function rainbowMode(e) {
 function toggleRainbowModeAndErase(e){
     if (e.target.classList.contains("erase")){
         erase.classList.toggle("enabled");
+        if (toggleRainbow.classList.contains("enabled") && erase.classList.contains("enabled")){
+        toggleRainbow.classList.remove("enabled");
+        }
     }else{
         toggleRainbow.classList.toggle("enabled");
+        if (toggleRainbow.classList.contains("enabled") && erase.classList.contains("enabled")){
+        erase.classList.remove("enabled");
+        }
     }
-}
-
-erase.addEventListener("click",eraseMode);
-
-function eraseMode(e){
-    toggleRainbow.classList.remove("enabled");
-    e.target.style.backgroundColor = '';
 }
 
 function standardMode(e){
     e.target.style.backgroundColor = "black";
 }
+
+ function clearMode(){
+    const boxes = document.querySelectorAll("#gridBox");
+    boxes.forEach(box => box.style.backgroundColor = '');
+ }
