@@ -30,7 +30,13 @@ function setDefaultGridSize() {
 
 function changeGridSize() {
     const box = document.createElement("div");
-    let n = parseInt(prompt('Enter your desired number of squares per side (max 100).'));
+    let n = parseInt(prompt('Enter your desired number of squares per side (max 100).',"16"));
+    console.log(n);
+    if (n > 100){
+        n = parseInt(prompt("Please enter a number no greater than 100.","16"));
+    }else if (isNaN(n)|| n == ""){
+        n = 16;
+    }
     gridSize.textContent = `${n} x ${n}`;
     box.setAttribute("id","gridBox");
     grid.setAttribute("style",`grid-template-columns: repeat(${n},1fr); grid-template-rows: repeat(${n},1fr);`);
