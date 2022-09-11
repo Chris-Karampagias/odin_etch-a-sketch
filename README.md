@@ -1,11 +1,7 @@
-Sections
-
-1)Button on the top of the page that when clicked will allow the user to enter desired number of boxes per side (limit 100)
-2)One div representing the grid with the div boxes inside of it
-3)Hover effect for the boxes to change color to a random rgb value and after the first time add 10% black when hovered over
-
-Bonus sections
-
-1)Button to reset 
-2)Button to erase
-3)Button to toggle rainbow mode on/off
+This Etch-a-Sketch project from The Odin Project's curriculum was created using HTML, CSS and Javascript for DOM manipulation.
+It has functions for :
+1) Changing definition by changing the number of "pixels" in the grid
+2) Erasing 
+3) Making each "pixel" a random color and slowly adding black to it after each pass
+4) Clearing the grid
+5) Making each "pixel" black after the first pass
