@@ -34,6 +34,9 @@ function changeGridSize() {
     console.log(n);
     if (n > 100){
         n = parseInt(prompt("Please enter a number no greater than 100.","16"));
+         if (isNaN(n)) {
+            n = 16;
+        }
     }else if (isNaN(n)|| n == ""){
         n = 16;
     }
