@@ -8,6 +8,9 @@ const grid = document.querySelector(".grid");
 
 
 window.addEventListener("load", setDefaultGridSize);
+changeSize.addEventListener("click" , changeGridSize);
+toggleRainbow.addEventListener("click", toggleRainbowModeAndErase);
+erase.addEventListener("click",toggleRainbowModeAndErase);
 
 
 function setDefaultGridSize() {
@@ -23,7 +26,6 @@ function setDefaultGridSize() {
             ["mousedown","mouseover"].forEach(event => box.addEventListener(event,changeBackgroundColor));
     })
 }
-changeSize.addEventListener("click" , changeGridSize);
 
 function changeGridSize() {
     const box = document.createElement("div");
@@ -46,19 +48,53 @@ function changeGridSize() {
 
 function changeBackgroundColor(e) {
     if (e.buttons == 1 && toggleRainbow.classList.contains("enabled")){
+        rainbowMode(e);
+    }else if(e.buttons == 1 && !toggleRainbow.classList.contains("enabled")){
         e.target.style.backgroundColor = "black";
     }
 }
 
-toggleRainbow.addEventListener("click", toggleRainbowModeAndErase);
-erase.addEventListener("click",toggleRainbowModeAndErase);
-
-
-
+function rainbowMode(e) {
+    if (!e.target.style.backgroundColor || e.target.style.backgroundColor == "black"){
+    let r = Math.floor(Math.random() * 256);
+    let g = Math.floor(Math.random() * 256);
+    let b = Math.floor(Math.random() * 256);
+    e.target.style.backgroundColor = `rgb(${r},${g},${b})`;
+    e.target.setAttribute("data-red",`${r}`);
+    e.target.setAttribute("data-green",`${g}`);
+    e.target.setAttribute("data-blue",`${b}`);
+    }else {
+        let red = Number(e.target.getAttribute("data-red"));
+        let green = Number(e.target.getAttribute("data-green"));
+        let blue = Number(e.target.getAttribute("data-blue"));
+        let color = "";
+        const colors = [];
+        string = e.target.style.backgroundColor;
+    outer: for (let str of string){
+            for (let i = 0 ; i < 10 ; i++){
+                if (str == `${i}`){
+                    color += i;
+                    continue outer;
+                }else if (str == ","){
+                    colors.push(color);
+                    color = "";
+                    continue outer;
+                }else if (str == ")"){
+                    colors.push(color);
+                    break outer;
+                }
+            }
+        }
+        colors[0] -= red * 1/10;
+        colors[1] -= green * 1/10;
+        colors[2] -= blue * 1/10;
+        e.target.style.backgroundColor = `rgb(${colors[0]},${colors[1]},${colors[2]})`;
+    }
+}
 
 function toggleRainbowModeAndErase(e){
     if (e.target.classList.contains("erase")){
-    erase.classList.toggle("enabled");
+        erase.classList.toggle("enabled");
     }else{
         toggleRainbow.classList.toggle("enabled");
     }
